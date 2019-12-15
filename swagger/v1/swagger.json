@@ -1,0 +1,10 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "StudentWise API V1",
+    "version": "v1",
+    "description": "RESTful API for StudentWise Project"
+  },
+  "paths": {
+  }
+}
