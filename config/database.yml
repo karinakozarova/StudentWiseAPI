@@ -83,6 +83,4 @@ test:
 #
 production:
   <<: *default
-  database: studentwise_api_production
-  username: studentwise_api
-  password: <%= ENV['STUDENTWISE_API_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
