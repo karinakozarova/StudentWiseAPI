@@ -14,6 +14,12 @@ RSpec.describe 'Logout a User', swagger_doc: 'v1/swagger.json' do
 
         run_test!
       end
+
+      response '401', 'unauthorized' do
+        let(:Authorization) { 'invalid' }
+
+        run_test!
+      end
     end
   end
 end

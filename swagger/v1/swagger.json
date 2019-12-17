@@ -130,6 +130,9 @@
         "responses": {
           "200": {
             "description": "user logged out"
+          },
+          "401": {
+            "description": "unauthorized"
           }
         }
       }
