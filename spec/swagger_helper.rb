@@ -14,11 +14,21 @@ RSpec.configure do |config|
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
   config.swagger_docs = {
     'v1/swagger.json' => {
-      openapi: '3.0.1',
+      swagger: '2.0',
       info: {
         title: 'StudentWise API V1',
         version: 'v1',
         description: 'RESTful API for StudentWise Project'
+      },
+      consumes: ['application/json'],
+      produces: ['application/json'],
+      securityDefinitions: {
+        Bearer: {
+          type: :apiKey,
+          in: :header,
+          name: 'Authorization',
+          description: 'Token returned after user gets authenticated'
+        }
       },
       paths: {}
     }
