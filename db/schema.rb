@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_15_144009) do
+ActiveRecord::Schema.define(version: 2019_12_21_105924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.bigint "creator_id"
+    t.string "event_type", default: "other"
+    t.string "title", default: "", null: false
+    t.text "description", default: ""
+    t.datetime "starts_at"
+    t.datetime "finishes_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id"], name: "index_events_on_creator_id"
+  end
 
   create_table "jwt_blacklists", force: :cascade do |t|
     t.string "jti"
@@ -33,4 +45,5 @@ ActiveRecord::Schema.define(version: 2019_12_15_144009) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "events", "users", column: "creator_id"
 end
