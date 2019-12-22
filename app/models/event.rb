@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  scope :created_by, ->(user) { where(creator_id: user.id) }
+
   TYPES = %i(duty other party).freeze
 
   belongs_to :creator, class_name: 'User'
