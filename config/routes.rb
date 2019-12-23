@@ -15,6 +15,8 @@ Rails.application.routes.draw do
         post 'users', to: 'users/registrations#create', as: nil
         delete 'users', to: 'users/registrations#destroy', as: nil
       end
+
+      resources :events
     end
   end
 end
