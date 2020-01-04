@@ -3,7 +3,7 @@ class Api::V1::EventsController < ApplicationController
   before_action :set_event, only: %i(show update destroy)
 
   def index
-    @events = Event.all
+    @events = Event.with_participant(current_user).all
   end
 
   def show

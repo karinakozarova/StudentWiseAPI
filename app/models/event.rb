@@ -2,6 +2,9 @@ class Event < ApplicationRecord
   TYPES = %i(duty other party).freeze
 
   scope :created_by, ->(user) { where(creator_id: user.id) }
+  scope :with_participant, ->(user) do
+    joins(:event_participants).where('participant_id = ?', user.id)
+  end
 
   belongs_to :creator, class_name: 'User'
 
