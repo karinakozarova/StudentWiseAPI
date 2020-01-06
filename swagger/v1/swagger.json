@@ -20,6 +20,114 @@
     }
   },
   "paths": {
+    "/api/v1/events/{event_id}/participants": {
+      "post": {
+        "summary": "Creates an event participant",
+        "tags": [
+          "EventParticipants"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "event_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "event_participant",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "event_participant": {
+                  "type": "object",
+                  "required": [
+                    "participant_id"
+                  ],
+                  "properties": {
+                    "participant_id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "event participant created"
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "422": {
+            "description": "invalid request"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Removes an event participant",
+        "tags": [
+          "EventParticipants"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "event_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "event_participant",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "event_participant": {
+                  "type": "object",
+                  "required": [
+                    "participant_id"
+                  ],
+                  "properties": {
+                    "participant_id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "event participant removed"
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
     "/api/v1/events": {
       "post": {
         "summary": "Creates an event",
