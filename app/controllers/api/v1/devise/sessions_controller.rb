@@ -4,7 +4,7 @@ class Api::V1::Devise::SessionsController < Devise::SessionsController
   private
 
   def respond_with(resource, _opts = {})
-    render json: resource
+    render partial: 'api/v1/users/user', locals: { user: resource }
   end
 
   def verify_signed_out_user
