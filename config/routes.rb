@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         delete 'users/logout', to: 'devise/sessions#destroy', as: :destroy_user_session
       end
 
+      resources :users, only: %i(index show)
       resources :events
     end
   end
