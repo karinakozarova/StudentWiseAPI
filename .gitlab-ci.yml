@@ -1,0 +1,37 @@
+default:
+  image: ruby:2.6.5
+
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  services:
+    - name: postgres:latest
+      alias: db
+  variables:
+    POSTGRES_DB: studentwise_api_test
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+  # Cache gems in between builds
+  cache:
+    paths:
+      - vendor/ruby
+  # Install dependencies into ./vendor/ruby
+  before_script:
+    - gem install bundler
+    - bundle install -j $(nproc) --path vendor
+  # Run automated tests
+  script:
+    - bundle exec rspec
+
+# Deploy application to Heroku
+deploy:
+  stage: deploy
+  only:
+    - master
+  environment: production
+  script:
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_PRODUCTION_KEY
