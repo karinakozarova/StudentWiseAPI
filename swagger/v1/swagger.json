@@ -186,7 +186,7 @@
         }
       },
       "get": {
-        "summary": "Shows multiple events",
+        "summary": "Shows events in which you participate",
         "tags": [
           "Events"
         ],
@@ -224,7 +224,7 @@
           {
             "name": "id",
             "in": "path",
-            "type": "string",
+            "type": "integer",
             "required": true
           }
         ],
@@ -256,7 +256,7 @@
           {
             "name": "id",
             "in": "path",
-            "type": "string",
+            "type": "integer",
             "required": true
           }
         ],
@@ -288,7 +288,7 @@
           {
             "name": "id",
             "in": "path",
-            "type": "string",
+            "type": "integer",
             "required": true
           },
           {

@@ -2,8 +2,8 @@ require 'swagger_helper'
 
 RSpec.describe 'Update an Event', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user) }
-  let(:auth_token) { user_auth_token(user) }
   let(:old_event) { create(:event, creator_id: user.id) }
+  let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/events/{id}' do
     put 'Updates an event' do
@@ -11,7 +11,7 @@ RSpec.describe 'Update an Event', swagger_doc: 'v1/swagger.json' do
       security [ Bearer: [] ]
       parameter name: :id,
         in: :path,
-        type: :string
+        type: :integer
       parameter name: :event,
         in: :body,
         required: true,
@@ -41,9 +41,7 @@ RSpec.describe 'Update an Event', swagger_doc: 'v1/swagger.json' do
           }
         end
 
-        run_test! do |response|
-          expect(response.body).to include('New Title')
-        end
+        run_test!
       end
 
       response '401', 'unauthorized' do
