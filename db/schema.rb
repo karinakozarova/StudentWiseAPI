@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_21_105924) do
+ActiveRecord::Schema.define(version: 2020_01_04_180544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "event_participants", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "participant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id", "participant_id"], name: "index_event_participants_on_event_id_and_participant_id", unique: true
+    t.index ["event_id"], name: "index_event_participants_on_event_id"
+    t.index ["participant_id"], name: "index_event_participants_on_participant_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.bigint "creator_id"
@@ -45,5 +55,7 @@ ActiveRecord::Schema.define(version: 2019_12_21_105924) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "event_participants", "events"
+  add_foreign_key "event_participants", "users", column: "participant_id"
   add_foreign_key "events", "users", column: "creator_id"
 end

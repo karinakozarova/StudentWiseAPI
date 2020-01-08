@@ -10,7 +10,7 @@ RSpec.describe 'Destroy an Event', swagger_doc: 'v1/swagger.json' do
       security [ Bearer: [] ]
       parameter name: :id,
         in: :path,
-        type: :string
+        type: :integer
 
       response '200', 'event removed' do
         let(:Authorization) { auth_token }
@@ -28,7 +28,7 @@ RSpec.describe 'Destroy an Event', swagger_doc: 'v1/swagger.json' do
 
       response '404', 'not found' do
         let(:Authorization) { auth_token }
-        let(:id) { 999 }
+        let(:id) { 0 }
 
         run_test!
       end

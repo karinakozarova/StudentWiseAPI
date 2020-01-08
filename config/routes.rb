@@ -17,7 +17,10 @@ Rails.application.routes.draw do
       end
 
       resources :users, only: %i(index show)
-      resources :events
+      resources :events do
+        post 'participants', to: 'event_participants#create'
+        delete 'participants', to: 'event_participants#destroy'
+      end
     end
   end
 end

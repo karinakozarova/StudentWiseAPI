@@ -2,12 +2,12 @@ require 'swagger_helper'
 
 RSpec.describe 'Show multiple Events', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user) }
-  let(:auth_token) { user_auth_token(user) }
   let(:event1) { create(:event, creator_id: user.id) }
   let(:event2) { create(:event, creator_id: user.id) }
+  let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/events' do
-    get 'Shows multiple events' do
+    get 'Shows events in which you participate' do
       tags 'Events'
       security [ Bearer: [] ]
 
