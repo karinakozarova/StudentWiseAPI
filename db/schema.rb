@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_04_180544) do
+ActiveRecord::Schema.define(version: 2020_01_08_191914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 2020_01_04_180544) do
     t.index ["participant_id"], name: "index_event_participants_on_participant_id"
   end
 
+  create_table "event_votes", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "voter_id", null: false
+    t.boolean "finished", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id", "voter_id"], name: "index_event_votes_on_event_id_and_voter_id", unique: true
+    t.index ["event_id"], name: "index_event_votes_on_event_id"
+    t.index ["voter_id"], name: "index_event_votes_on_voter_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.bigint "creator_id"
     t.string "event_type", default: "other"
@@ -34,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_01_04_180544) do
     t.datetime "finishes_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "event_status", default: "pending", null: false
     t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 
@@ -57,5 +69,7 @@ ActiveRecord::Schema.define(version: 2020_01_04_180544) do
 
   add_foreign_key "event_participants", "events"
   add_foreign_key "event_participants", "users", column: "participant_id"
+  add_foreign_key "event_votes", "events"
+  add_foreign_key "event_votes", "users", column: "voter_id"
   add_foreign_key "events", "users", column: "creator_id"
 end
