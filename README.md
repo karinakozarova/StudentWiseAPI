@@ -1,4 +1,5 @@
 # StudentWise API
+[![Pipeline Status](https://git.fhict.nl/I433762/studentwise-api/badges/master/pipeline.svg)](https://git.fhict.nl/I433762/studentwise-api/commits/master)
 
 This repository contains the RESTful API for StudentWise developed with Ruby on Rails.
 
