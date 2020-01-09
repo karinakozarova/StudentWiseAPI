@@ -12,7 +12,7 @@ RSpec.describe 'Destroy an Event', swagger_doc: 'v1/swagger.json' do
         in: :path,
         type: :integer
 
-      response '200', 'event removed' do
+      response '204', 'event removed' do
         let(:Authorization) { auth_token }
         let(:id) { create(:event, creator_id: user.id).id }
 

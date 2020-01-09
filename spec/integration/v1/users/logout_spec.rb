@@ -6,7 +6,7 @@ RSpec.describe 'Logout a User', swagger_doc: 'v1/swagger.json' do
       tags 'Users'
       security [ Bearer: [] ]
 
-      response '200', 'user logged out' do
+      response '204', 'user logged out' do
         let(:Authorization) { user_auth_token }
 
         run_test!

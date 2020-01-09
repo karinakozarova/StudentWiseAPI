@@ -116,7 +116,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "event participant removed"
           },
           "401": {
@@ -229,7 +229,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "event removed"
           },
           "401": {
@@ -461,7 +461,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
             "description": "user logged out"
           },
           "401": {
