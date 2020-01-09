@@ -13,7 +13,6 @@ class Api::V1::EventParticipantsController < ApplicationController
 
   def destroy
     @event_participant.destroy
-    head :ok if @event_participant.destroyed?
   end
 
   private
