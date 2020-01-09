@@ -29,7 +29,7 @@ RSpec.describe 'Destroy an EventParticipant', swagger_doc: 'v1/swagger.json' do
           }
         }
 
-      response '200', 'event participant removed' do
+      response '204', 'event participant removed' do
         let(:Authorization) { auth_token }
         let(:event_id) { ep.event_id }
         let(:event_participant) do
