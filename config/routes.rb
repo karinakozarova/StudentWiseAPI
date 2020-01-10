@@ -20,6 +20,10 @@ Rails.application.routes.draw do
       resources :events do
         post 'participants', to: 'event_participants#create'
         delete 'participants', to: 'event_participants#destroy'
+
+        put 'votes', to: 'event_votes#update'
+        post 'votes', to: 'event_votes#create'
+        delete 'votes', to: 'event_votes#destroy'
       end
     end
   end
