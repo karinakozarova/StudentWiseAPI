@@ -18,7 +18,7 @@ class Api::V1::EventParticipantsController < ApplicationController
   private
 
   def set_event
-    @event = Event.created_by(current_user).find(params[:event_id])
+    @event = Event.with_creator(current_user).find(params[:event_id])
   end
 
   def set_event_participant

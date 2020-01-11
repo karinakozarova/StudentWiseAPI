@@ -30,7 +30,7 @@ class Api::V1::EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.created_by(current_user).find(params[:id])
+    @event = Event.with_creator(current_user).find(params[:id])
   end
 
   def event_params

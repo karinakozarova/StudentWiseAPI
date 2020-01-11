@@ -4,7 +4,7 @@ class Event < ApplicationRecord
 
   MIN_VOTES = 3.freeze
 
-  scope :created_by, ->(user) { where(creator_id: user.id) }
+  scope :with_creator, ->(user) { where(creator_id: user.id) }
   scope :with_participant, ->(user) do
     joins(:event_participants).where('participant_id = ?', user.id)
   end
