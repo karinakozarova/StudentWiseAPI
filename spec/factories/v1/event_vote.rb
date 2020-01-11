@@ -4,12 +4,7 @@ FactoryBot.define do
     association :voter, factory: :user
     finished { Faker::Boolean.boolean }
 
-    trait :finished do
-      finished { true }
-    end
-
-    trait :unfinished do
-      finished { false }
-    end
+    trait(:finished) { finished { true } }
+    trait(:unfinished) { finished { false } }
   end
 end

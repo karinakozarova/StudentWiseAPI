@@ -8,16 +8,12 @@ FactoryBot.define do
     starts_at { Faker::Time.between(from: DateTime.now, to: DateTime.now + 7) }
     finishes_at { Faker::Time.between(from: starts_at + 5.minutes, to: starts_at + 2.hours) }
 
-    trait :duty do
-      event_type { :duty }
-    end
+    trait(:duty) { event_type { :duty } }
+    trait(:party) { event_type { :party } }
 
-    trait :party do
-      event_type { :party }
-    end
+    trait(:marked_as_finished) { event_status { :marked_as_finished } }
 
-    trait :pending_review do
-      event_status { :marked_as_finished }
+    trait(:with_participants) do
       after(:create) do |event|
         2.times do
           create(:event_participant, event_id: event.id)

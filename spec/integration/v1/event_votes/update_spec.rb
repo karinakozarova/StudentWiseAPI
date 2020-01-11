@@ -2,7 +2,7 @@ require 'swagger_helper'
 
 RSpec.describe 'Update an EventVote', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user) }
-  let(:event) { create(:event, :pending_review) }
+  let(:event) { create(:event, :with_participants, :marked_as_finished) }
   let(:ev) { create(:event_vote, event_id: event.id, voter_id: user.id) }
   let(:auth_token) { user_auth_token(user) }
 

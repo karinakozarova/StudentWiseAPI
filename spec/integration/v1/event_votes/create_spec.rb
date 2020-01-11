@@ -2,7 +2,7 @@ require 'swagger_helper'
 
 RSpec.describe 'Create an EventVote', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user) }
-  let(:event) { create(:event, :pending_review) }
+  let(:event) { create(:event, :with_participants, :marked_as_finished) }
   let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/events/{event_id}/votes' do
