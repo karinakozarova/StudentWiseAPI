@@ -2,8 +2,8 @@ require 'swagger_helper'
 
 RSpec.describe 'Create an EventParticipant', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user) }
-  let(:event) { create(:event, creator_id: user.id) }
-  let(:auth_token) { user_auth_token(user) }
+  let(:event) { create(:event) }
+  let(:auth_token) { user_auth_token(event.creator) }
 
   path '/api/v1/events/{event_id}/participants' do
     post 'Creates an event participant' do
@@ -45,6 +45,20 @@ RSpec.describe 'Create an EventParticipant', swagger_doc: 'v1/swagger.json' do
       response '401', 'unauthorized' do
         let(:Authorization) { 'invalid' }
         let(:event_id) { event.id }
+        let(:event_participant) do
+          {
+            event_participant: {
+              participant_id: user.id
+            }
+          }
+        end
+
+        run_test!
+      end
+
+      response '404', 'not found' do
+        let(:Authorization) { auth_token }
+        let(:event_id) { 0 }
         let(:event_participant) do
           {
             event_participant: {

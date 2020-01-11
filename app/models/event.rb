@@ -22,6 +22,8 @@ class Event < ApplicationRecord
   validates :starts_at, date: { allow_blank: true }
   validates :finishes_at, date: { allow_blank: true, after: :starts_at, message: 'must be after starts_at' }
 
+  after_create :add_creator_to_participants
+
   def in_review?
     event_status.to_sym == :marked_as_finished
   end
@@ -42,6 +44,10 @@ class Event < ApplicationRecord
       return true if event_status.to_sym == status
     end
     return false
+  end
+
+  def add_creator_to_participants
+    event_participants.create(participant_id: creator_id)
   end
 
   def set_event_status
