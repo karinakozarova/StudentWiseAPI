@@ -69,6 +69,9 @@
           "401": {
             "description": "unauthorized"
           },
+          "404": {
+            "description": "not found"
+          },
           "422": {
             "description": "invalid request"
           }
