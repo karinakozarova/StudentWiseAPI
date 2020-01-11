@@ -35,6 +35,15 @@ class Event < ApplicationRecord
     return false
   end
 
+  def locked?
+    locked_types = %i(finished unfinished)
+
+    locked_types.each do |status|
+      return true if event_status.to_sym == status
+    end
+    return false
+  end
+
   def set_event_status
     update!(event_status: determine_event_status)
   end
