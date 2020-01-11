@@ -8,7 +8,7 @@ class Api::V1::EventParticipantsController < ApplicationController
     @event_participant.event_id = @event.id
 
     @event_participant.save!
-    head :created
+    render :show, status: :created
   end
 
   def destroy
