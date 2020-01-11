@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 
       resources :users, only: %i(index show)
       resources :events do
+        put 'mark_as_finished', to: 'events#mark_as_finished'
+        put 'unmark_as_finished', to: 'events#unmark_as_finished'
+
         post 'participants', to: 'event_participants#create'
         delete 'participants', to: 'event_participants#destroy'
 
