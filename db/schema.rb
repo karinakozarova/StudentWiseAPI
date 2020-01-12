@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_131401) do
+ActiveRecord::Schema.define(version: 2020_01_12_173425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 2020_01_12_131401) do
     t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 
+  create_table "expense_participants", force: :cascade do |t|
+    t.bigint "expense_id", null: false
+    t.bigint "participant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expense_id", "participant_id"], name: "index_expense_participants_on_expense_id_and_participant_id", unique: true
+    t.index ["expense_id"], name: "index_expense_participants_on_expense_id"
+    t.index ["participant_id"], name: "index_expense_participants_on_participant_id"
+  end
+
   create_table "expenses", force: :cascade do |t|
     t.bigint "creator_id", null: false
     t.string "name", null: false
@@ -94,5 +104,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_131401) do
   add_foreign_key "event_votes", "events"
   add_foreign_key "event_votes", "users", column: "voter_id"
   add_foreign_key "events", "users", column: "creator_id"
+  add_foreign_key "expense_participants", "expenses"
+  add_foreign_key "expense_participants", "users", column: "participant_id"
   add_foreign_key "expenses", "users", column: "creator_id"
 end
