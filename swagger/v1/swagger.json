@@ -750,6 +750,117 @@
         }
       }
     },
+    "/api/v1/expenses/{expense_id}/participants": {
+      "post": {
+        "summary": "Creates an expense participant",
+        "tags": [
+          "ExpenseParticipants"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "expense_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "expense_participant",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "expense_participant": {
+                  "type": "object",
+                  "required": [
+                    "participant_id"
+                  ],
+                  "properties": {
+                    "participant_id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "expense participant created"
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "422": {
+            "description": "invalid request"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Removes an expense participant",
+        "tags": [
+          "ExpenseParticipants"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "expense_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "expense_participant",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "expense_participant": {
+                  "type": "object",
+                  "required": [
+                    "participant_id"
+                  ],
+                  "properties": {
+                    "participant_id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "expense participant removed"
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
     "/api/v1/expenses": {
       "post": {
         "summary": "Creates an expense",
@@ -810,7 +921,7 @@
         }
       },
       "get": {
-        "summary": "Shows expenses which you created",
+        "summary": "Shows all expenses",
         "tags": [
           "Expenses"
         ],
