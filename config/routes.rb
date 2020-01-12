@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       end
 
       resources :complaints
+      resources :expenses
       resources :users, only: %i(index show)
       resources :events do
         put 'mark_as_finished', to: 'events#mark_as_finished'
