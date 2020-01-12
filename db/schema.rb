@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_000048) do
+ActiveRecord::Schema.define(version: 2020_01_12_131401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,17 @@ ActiveRecord::Schema.define(version: 2020_01_12_000048) do
     t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 
+  create_table "expenses", force: :cascade do |t|
+    t.bigint "creator_id", null: false
+    t.string "name", null: false
+    t.string "notes"
+    t.decimal "price", precision: 8, scale: 2, null: false
+    t.integer "amount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id"], name: "index_expenses_on_creator_id"
+  end
+
   create_table "jwt_blacklists", force: :cascade do |t|
     t.string "jti"
     t.datetime "exp"
@@ -83,4 +94,5 @@ ActiveRecord::Schema.define(version: 2020_01_12_000048) do
   add_foreign_key "event_votes", "events"
   add_foreign_key "event_votes", "users", column: "voter_id"
   add_foreign_key "events", "users", column: "creator_id"
+  add_foreign_key "expenses", "users", column: "creator_id"
 end
