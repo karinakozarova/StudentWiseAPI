@@ -17,7 +17,6 @@ Rails.application.routes.draw do
       end
 
       resources :complaints
-      resources :expenses
       resources :users, only: %i(index show)
       resources :events do
         put 'mark_as_finished', to: 'events#mark_as_finished'
@@ -29,6 +28,10 @@ Rails.application.routes.draw do
         put 'votes', to: 'event_votes#update'
         post 'votes', to: 'event_votes#create'
         delete 'votes', to: 'event_votes#destroy'
+      end
+      resources :expenses do
+        post 'participants', to: 'expense_participants#create'
+        delete 'participants', to: 'expense_participants#destroy'
       end
     end
   end
