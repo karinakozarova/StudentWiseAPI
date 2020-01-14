@@ -6,4 +6,8 @@ class V1::ExpensePresenter < ApplicationPresenter
   def price
     number_with_precision(expense.price, precision: 2, separator: '.')
   end
+
+  def archived_changed?
+    expense.archived_previously_changed?
+  end
 end
