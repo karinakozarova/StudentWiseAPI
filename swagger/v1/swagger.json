@@ -499,6 +499,9 @@
                     "title"
                   ],
                   "properties": {
+                    "event_type": {
+                      "type": "string"
+                    },
                     "title": {
                       "type": "string"
                     },
@@ -645,6 +648,9 @@
                 "event": {
                   "type": "object",
                   "properties": {
+                    "event_type": {
+                      "type": "string"
+                    },
                     "title": {
                       "type": "string"
                     },
@@ -698,7 +704,7 @@
           }
         ],
         "responses": {
-          "204": {
+          "200": {
             "description": "event marked as finished"
           },
           "401": {
@@ -735,7 +741,7 @@
           }
         ],
         "responses": {
-          "204": {
+          "200": {
             "description": "event unmarked as finished"
           },
           "401": {
