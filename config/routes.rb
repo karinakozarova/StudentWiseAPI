@@ -30,6 +30,9 @@ Rails.application.routes.draw do
         delete 'votes', to: 'event_votes#destroy'
       end
       resources :expenses do
+        put 'archive', to: 'expenses#archive'
+        put 'unarchive', to: 'expenses#unarchive'
+
         post 'participants', to: 'expense_participants#create'
         delete 'participants', to: 'expense_participants#destroy'
       end

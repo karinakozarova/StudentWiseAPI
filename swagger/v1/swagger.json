@@ -861,6 +861,40 @@
         }
       }
     },
+    "/api/v1/expenses/{id}/archive": {
+      "put": {
+        "summary": "Archives an expense",
+        "tags": [
+          "Expenses"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "expense archived"
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
     "/api/v1/expenses": {
       "post": {
         "summary": "Creates an expense",
@@ -1066,6 +1100,40 @@
           },
           "422": {
             "description": "invalid request"
+          }
+        }
+      }
+    },
+    "/api/v1/expenses/{id}/unarchive": {
+      "put": {
+        "summary": "Unarchives an expense",
+        "tags": [
+          "Expenses"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "expense unarchived"
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "404": {
+            "description": "not found"
           }
         }
       }
