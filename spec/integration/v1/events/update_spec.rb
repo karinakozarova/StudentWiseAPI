@@ -21,6 +21,7 @@ RSpec.describe 'Update an Event', swagger_doc: 'v1/swagger.json' do
             event: {
               type: :object,
               properties: {
+                event_type: { type: :string },
                 title: { type: :string },
                 description: { type: :string },
                 starts_at: { type: :string },

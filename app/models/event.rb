@@ -37,11 +37,12 @@ class Event < ApplicationRecord
     return false
   end
 
-  def locked?
+  def locked?(status_to_check = nil)
     locked_types = %i(finished unfinished)
+    status_to_check ||= event_status.to_sym
 
     locked_types.each do |status|
-      return true if event_status.to_sym == status
+      return true if status_to_check == status
     end
     return false
   end

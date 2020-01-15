@@ -12,7 +12,7 @@ RSpec.describe 'Mark an Event as finished', swagger_doc: 'v1/swagger.json' do
         in: :path,
         type: :integer
 
-      response '204', 'event marked as finished' do
+      response '200', 'event marked as finished' do
         let(:Authorization) { auth_token }
         let(:id) { event.id }
 

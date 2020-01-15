@@ -32,10 +32,12 @@ class Api::V1::EventsController < ApplicationController
 
   def mark_as_finished
     @event.update!(event_status: :marked_as_finished)
+    render :mark, status: :ok
   end
 
   def unmark_as_finished
     @event.update!(event_status: :pending)
+    render :mark, status: :ok
   end
 
   private
