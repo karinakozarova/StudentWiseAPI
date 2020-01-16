@@ -6,7 +6,7 @@ class Api::V1::EventsController < ApplicationController
   before_action :check_event, only: %i(update destroy mark_as_finished unmark_as_finished)
 
   def index
-    @events = Event.with_participant(current_user).all
+    @events = Event.all
   end
 
   def show

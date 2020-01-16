@@ -7,7 +7,7 @@ RSpec.describe 'Show multiple Events', swagger_doc: 'v1/swagger.json' do
   let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/events' do
-    get 'Shows events in which you participate' do
+    get 'Shows all events' do
       tags 'Events'
       security [ Bearer: [] ]
 
