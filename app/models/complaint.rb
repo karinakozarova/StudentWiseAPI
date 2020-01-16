@@ -9,4 +9,14 @@ class Complaint < ApplicationRecord
 
   validates :status, inclusion: { in: Complaint::STATUSES.map(&:to_s) }
   validates :title, presence: true
+
+  Complaint::STATUSES.each do |available_status|
+    define_method :"#{available_status}?" do
+      status.to_sym == available_status
+    end
+  end
+
+  def change_sent_to_received!
+    update!(status: :received) if sent?
+  end
 end
