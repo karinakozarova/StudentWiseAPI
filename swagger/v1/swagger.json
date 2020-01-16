@@ -215,6 +215,108 @@
         }
       }
     },
+    "/api/v1/complaints/{id}/mark_as_in_progress": {
+      "put": {
+        "summary": "Marks an complaint as in progress",
+        "tags": [
+          "Complaints"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "complaint marked as in progress"
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
+    "/api/v1/complaints/{id}/mark_as_rejected": {
+      "put": {
+        "summary": "Marks an complaint as rejected",
+        "tags": [
+          "Complaints"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "complaint marked as rejected"
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
+    "/api/v1/complaints/{id}/mark_as_resolved": {
+      "put": {
+        "summary": "Marks an complaint as resolved",
+        "tags": [
+          "Complaints"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "complaint marked as resolved"
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      }
+    },
     "/api/v1/events/{event_id}/participants": {
       "post": {
         "summary": "Creates an event participant",
