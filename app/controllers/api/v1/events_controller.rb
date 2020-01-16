@@ -14,7 +14,7 @@ class Api::V1::EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.event_status = :pending
+    @event.status = :pending
     @event.creator_id = current_user.id
 
     @event.save!
@@ -31,12 +31,12 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def mark_as_finished
-    @event.update!(event_status: :marked_as_finished)
+    @event.update!(status: :marked_as_finished)
     render :mark, status: :ok
   end
 
   def unmark_as_finished
-    @event.update!(event_status: :pending)
+    @event.update!(status: :pending)
     render :mark, status: :ok
   end
 
@@ -55,7 +55,7 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:event_type, :title, :description, :starts_at, :finishes_at)
+    params.require(:event).permit(:kind, :title, :description, :starts_at, :finishes_at)
   end
 
   def check_event

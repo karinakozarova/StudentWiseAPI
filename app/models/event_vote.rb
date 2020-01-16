@@ -9,6 +9,6 @@ class EventVote < ApplicationRecord
   after_destroy :set_event_status
 
   def set_event_status
-    event.set_event_status
+    event.set_status
   end
 end

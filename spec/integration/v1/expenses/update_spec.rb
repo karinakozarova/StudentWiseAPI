@@ -24,7 +24,7 @@ RSpec.describe 'Update an Expense', swagger_doc: 'v1/swagger.json' do
                 name: { type: :string },
                 notes: { type: :string },
                 price: { type: :number },
-                amount: { type: :integer }
+                quantity: { type: :integer }
               }
             }
           }

@@ -17,7 +17,7 @@ RSpec.describe 'Create an Event', swagger_doc: 'v1/swagger.json' do
               type: :object,
               required: %i(title),
               properties: {
-                event_type: { type: :string },
+                kind: { type: :string },
                 title: { type: :string },
                 description: { type: :string },
                 starts_at: { type: :string },

@@ -83,7 +83,7 @@ RSpec.describe 'Update an EventVote', swagger_doc: 'v1/swagger.json' do
         end
 
         before do
-          ev.event.update!(event_status: :finished)
+          ev.event.update!(status: :finished)
         end
 
         run_test!

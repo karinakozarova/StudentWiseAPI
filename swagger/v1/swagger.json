@@ -796,7 +796,7 @@
                     "title"
                   ],
                   "properties": {
-                    "event_type": {
+                    "kind": {
                       "type": "string"
                     },
                     "title": {
@@ -945,7 +945,7 @@
                 "event": {
                   "type": "object",
                   "properties": {
-                    "event_type": {
+                    "kind": {
                       "type": "string"
                     },
                     "title": {
@@ -1224,7 +1224,7 @@
                   "required": [
                     "name",
                     "price",
-                    "amount"
+                    "quantity"
                   ],
                   "properties": {
                     "name": {
@@ -1236,7 +1236,7 @@
                     "price": {
                       "type": "number"
                     },
-                    "amount": {
+                    "quantity": {
                       "type": "integer"
                     }
                   }
@@ -1382,7 +1382,7 @@
                     "price": {
                       "type": "number"
                     },
-                    "amount": {
+                    "quantity": {
                       "type": "integer"
                     }
                   }

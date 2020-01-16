@@ -38,7 +38,7 @@ RSpec.describe 'Mark an Event as finished', swagger_doc: 'v1/swagger.json' do
         let(:id) { event.id }
 
         before do
-          event.update!(event_status: :finished)
+          event.update!(status: :finished)
         end
 
         run_test!
