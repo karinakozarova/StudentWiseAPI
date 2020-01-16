@@ -16,6 +16,16 @@ class Complaint < ApplicationRecord
     end
   end
 
+  def locked?(status_to_check = nil)
+    locked_types = %i(in_progress rejected resolved)
+    status_to_check ||= status.to_sym
+
+    locked_types.each do |status|
+      return true if status_to_check == status
+    end
+    return false
+  end
+
   def change_sent_to_received!
     update!(status: :received) if sent?
   end
