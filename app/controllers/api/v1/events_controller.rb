@@ -1,6 +1,6 @@
 class Api::V1::EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_event, only: %i(show)
+  before_action :set_event, only: :show
   before_action :set_event_with_creator, only: %i(update destroy)
   before_action :set_event_with_participant, only: %i(mark_as_finished unmark_as_finished)
   before_action :check_event, only: %i(update destroy mark_as_finished unmark_as_finished)
@@ -43,15 +43,15 @@ class Api::V1::EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:id] || params[:event_id])
   end
 
   def set_event_with_creator
-    @event = Event.with_creator(current_user).find(params[:id])
+    @event = Event.with_creator(current_user).find(params[:id] || params[:event_id])
   end
 
   def set_event_with_participant
-    @event = Event.with_participant(current_user).find(params[:event_id])
+    @event = Event.with_participant(current_user).find(params[:id] || params[:event_id])
   end
 
   def event_params
