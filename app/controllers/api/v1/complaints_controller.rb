@@ -4,9 +4,11 @@ class Api::V1::ComplaintsController < ApplicationController
 
   def index
     @complaints = Complaint.with_creator(current_user).all
+    @complaints.map(&:change_sent_to_received!) if current_user.admin?
   end
 
   def show
+    @complaint.change_sent_to_received! if current_user.admin?
   end
 
   def create
