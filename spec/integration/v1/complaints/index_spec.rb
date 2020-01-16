@@ -9,7 +9,7 @@ RSpec.describe 'Show multiple Complaints', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/complaints' do
     get 'Shows complaints which you created' do
       tags 'Complaints'
-      security [ Bearer: [] ]
+      security [Bearer: []]
 
       response '200', 'complaints shown' do
         let(:Authorization) { auth_token }

@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "StudentWise API V1",
-    "version": "v1",
+    "title": "StudentWise API",
+    "version": "V1",
     "description": "RESTful API for StudentWise Project"
   },
   "consumes": [
@@ -412,7 +412,7 @@
     },
     "/api/v1/complaints/{id}/mark_as_in_progress": {
       "put": {
-        "summary": "Marks an complaint as in progress",
+        "summary": "Marks a complaint as in progress",
         "tags": [
           "Complaints"
         ],
@@ -446,7 +446,7 @@
     },
     "/api/v1/complaints/{id}/mark_as_rejected": {
       "put": {
-        "summary": "Marks an complaint as rejected",
+        "summary": "Marks a complaint as rejected",
         "tags": [
           "Complaints"
         ],
@@ -480,7 +480,7 @@
     },
     "/api/v1/complaints/{id}/mark_as_resolved": {
       "put": {
-        "summary": "Marks an complaint as resolved",
+        "summary": "Marks a complaint as resolved",
         "tags": [
           "Complaints"
         ],
@@ -740,9 +740,6 @@
               "properties": {
                 "event_vote": {
                   "type": "object",
-                  "required": [
-                    "finished"
-                  ],
                   "properties": {
                     "finished": {
                       "type": "boolean"
@@ -1509,6 +1506,65 @@
           },
           "401": {
             "description": "unauthorized"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates the authenticated user",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "required": [
+                    "current_password"
+                  ],
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "current_password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "user updated"
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "422": {
+            "description": "invalid request"
           }
         }
       }

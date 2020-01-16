@@ -22,12 +22,12 @@ RSpec.describe 'Login a User', swagger_doc: 'v1/swagger.json' do
         }
 
       response '200', 'user authenticated' do
-        let(:valid_user) { create(:user) }
+        let(:new_user) { create(:user) }
         let(:user) do
           {
             user: {
-              email: valid_user.email,
-              password: valid_user.password
+              email: new_user.email,
+              password: new_user.password
             }
           }
         end

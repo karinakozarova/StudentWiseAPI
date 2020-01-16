@@ -7,7 +7,7 @@ RSpec.describe 'Show a User', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/users/{id}' do
     get 'Shows a user' do
       tags 'Users'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :id,
         in: :path,
         type: :integer

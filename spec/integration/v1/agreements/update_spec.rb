@@ -8,7 +8,7 @@ RSpec.describe 'Update an Agreement', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/agreements/{id}' do
     put 'Updates an agreement' do
       tags 'Agreements'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :id,
         in: :path,
         type: :integer

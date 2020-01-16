@@ -8,7 +8,7 @@ RSpec.describe 'Update an Expense', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/expenses/{id}' do
     put 'Updates an expense' do
       tags 'Expenses'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :id,
         in: :path,
         type: :integer

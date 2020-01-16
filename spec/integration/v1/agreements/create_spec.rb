@@ -6,7 +6,7 @@ RSpec.describe 'Create an Agreement', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/agreements' do
     post 'Creates an agreement' do
       tags 'Agreements'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :agreement,
         in: :body,
         required: true,

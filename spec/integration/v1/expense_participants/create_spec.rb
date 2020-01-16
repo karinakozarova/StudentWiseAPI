@@ -8,7 +8,7 @@ RSpec.describe 'Create an ExpenseParticipant', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/expenses/{expense_id}/participants' do
     post 'Creates an expense participant' do
       tags 'ExpenseParticipants'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :expense_id,
         in: :path,
         type: :integer

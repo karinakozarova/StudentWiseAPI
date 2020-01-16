@@ -8,7 +8,7 @@ RSpec.describe 'Create an EventVote', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/events/{event_id}/votes' do
     post 'Creates an event vote' do
       tags 'EventVotes'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :event_id,
         in: :path,
         type: :integer

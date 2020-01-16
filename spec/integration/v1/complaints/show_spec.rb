@@ -8,7 +8,7 @@ RSpec.describe 'Show a Complaint', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/complaints/{id}' do
     get 'Shows a complaint' do
       tags 'Complaints'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :id,
         in: :path,
         type: :integer

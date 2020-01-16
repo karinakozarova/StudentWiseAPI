@@ -1,14 +1,14 @@
 require 'swagger_helper'
 
-RSpec.describe 'Mark an Complaint as resolved', swagger_doc: 'v1/swagger.json' do
+RSpec.describe 'Mark a Complaint as resolved', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user, :admin) }
   let(:complaint) { create(:complaint) }
   let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/complaints/{id}/mark_as_resolved' do
-    put 'Marks an complaint as resolved' do
+    put 'Marks a complaint as resolved' do
       tags 'Complaints'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :id,
         in: :path,
         type: :integer

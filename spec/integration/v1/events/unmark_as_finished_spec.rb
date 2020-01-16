@@ -7,7 +7,7 @@ RSpec.describe 'Unmark an Event as finished', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/events/{id}/unmark_as_finished' do
     put 'Unmarks an event as finished' do
       tags 'Events'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :id,
         in: :path,
         type: :integer

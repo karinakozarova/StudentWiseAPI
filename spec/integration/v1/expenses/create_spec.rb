@@ -6,7 +6,7 @@ RSpec.describe 'Create an Expense', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/expenses' do
     post 'Creates an expense' do
       tags 'Expenses'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :expense,
         in: :body,
         required: true,
