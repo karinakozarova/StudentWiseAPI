@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         delete 'users/logout', to: 'devise/sessions#destroy', as: :destroy_user_session
       end
 
+      resources :agreements
       resources :users, only: %i(index show)
       resources :complaints do
         put 'mark_as_in_progress', to: 'complaints#mark_as_in_progress'
