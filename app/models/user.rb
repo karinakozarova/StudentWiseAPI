@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :voted_for_events, through: :event_votes
   has_many :expense_participants, dependent: :destroy
   has_many :expenses, through: :expense_participants
+  has_many :agreements
 
   validates :first_name, presence: true
   validates :last_name, presence: true
