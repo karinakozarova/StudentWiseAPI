@@ -56,15 +56,15 @@ ActiveRecord::Schema.define(version: 2020_01_16_194025) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.bigint "creator_id"
-    t.string "event_type", default: "other"
-    t.string "title", default: "", null: false
-    t.text "description", default: ""
+    t.bigint "creator_id", null: false
+    t.string "kind", default: "other", null: false
+    t.string "title", null: false
+    t.text "description"
     t.datetime "starts_at"
     t.datetime "finishes_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "event_status", default: "pending", null: false
+    t.string "status", default: "pending", null: false
     t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2020_01_16_194025) do
     t.string "name", null: false
     t.string "notes"
     t.decimal "price", precision: 8, scale: 2, null: false
-    t.integer "amount", null: false
+    t.integer "quantity", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "archived", default: false
@@ -91,16 +91,16 @@ ActiveRecord::Schema.define(version: 2020_01_16_194025) do
   end
 
   create_table "jwt_blacklists", force: :cascade do |t|
-    t.string "jti"
-    t.datetime "exp"
+    t.string "jti", null: false
+    t.datetime "exp", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["jti"], name: "index_jwt_blacklists_on_jti"
+    t.index ["jti"], name: "index_jwt_blacklists_on_jti", unique: true
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
+    t.string "email", null: false
+    t.string "encrypted_password", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "first_name", null: false
