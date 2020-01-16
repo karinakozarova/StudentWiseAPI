@@ -8,7 +8,7 @@ class Api::V1::Devise::SessionsController < Devise::SessionsController
   end
 
   def verify_signed_out_user
-    head :unauthorized unless user_signed_in?
+    unauthorized_response unless user_signed_in?
   end
 
   def respond_to_on_destroy

@@ -17,9 +17,17 @@ class ApplicationController < ActionController::API
     render json: { error: exception.message }, status: :not_found
   end
 
+  def unauthorized_response(message = 'Unauthorized')
+    render json: { error: message }, status: :unauthorized
+  end
+
   def configure_permitted_parameters
     added_params = %i(first_name last_name)
     devise_parameter_sanitizer.permit(:sign_up, keys: added_params)
     devise_parameter_sanitizer.permit(:account_update, keys: added_params)
+  end
+
+  def require_admin!
+    unauthorized_response unless current_user.admin?
   end
 end
