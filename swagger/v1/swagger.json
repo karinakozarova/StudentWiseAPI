@@ -533,7 +533,7 @@
         }
       },
       "get": {
-        "summary": "Shows events in which you participate",
+        "summary": "Shows all events",
         "tags": [
           "Events"
         ],
