@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_133232) do
+ActiveRecord::Schema.define(version: 2020_01_16_194025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "agreements", force: :cascade do |t|
+    t.bigint "creator_id", null: false
+    t.string "title", null: false
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id"], name: "index_agreements_on_creator_id"
+  end
 
   create_table "complaints", force: :cascade do |t|
     t.bigint "creator_id", null: false
@@ -100,6 +109,7 @@ ActiveRecord::Schema.define(version: 2020_01_16_133232) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "agreements", "users", column: "creator_id"
   add_foreign_key "complaints", "users", column: "creator_id"
   add_foreign_key "event_participants", "events"
   add_foreign_key "event_participants", "users", column: "participant_id"
