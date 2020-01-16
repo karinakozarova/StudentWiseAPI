@@ -7,10 +7,10 @@ class Complaint < ApplicationRecord
 
   belongs_to :creator, class_name: 'User'
 
-  validates :status, inclusion: { in: Complaint::STATUSES.map(&:to_s) }
+  validates :status, inclusion: { in: STATUSES.map(&:to_s) }
   validates :title, presence: true
 
-  Complaint::STATUSES.each do |available_status|
+  STATUSES.each do |available_status|
     define_method :"#{available_status}?" do
       status.to_sym == available_status
     end

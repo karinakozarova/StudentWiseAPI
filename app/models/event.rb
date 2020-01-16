@@ -14,15 +14,15 @@ class Event < ApplicationRecord
   belongs_to :creator, class_name: 'User'
 
   has_many :event_participants, dependent: :destroy
-  has_many :participants, through: :event_participants
   has_many :event_votes, dependent: :destroy
+  has_many :participants, through: :event_participants
   has_many :voters, through: :event_votes
 
   validates :kind, inclusion: { in: KINDS.map(&:to_s) }
   validates :status, inclusion: { in: STATUSES.map(&:to_s) }
   validates :title, presence: true
   validates :starts_at, date: { allow_blank: true }
-  validates :finishes_at, date: { allow_blank: true, after: :starts_at, message: 'must be after starts_at' }
+  validates :finishes_at, date: { allow_blank: true, after: :starts_at, message: "must be after 'starts_at'" }
 
   after_create :add_creator_to_participants
 
@@ -53,7 +53,7 @@ class Event < ApplicationRecord
     event_participants.create(participant_id: creator_id)
   end
 
-  def set_status
+  def set_status!
     update!(status: determine_status)
   end
 
