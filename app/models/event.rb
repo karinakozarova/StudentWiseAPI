@@ -4,9 +4,11 @@ class Event < ApplicationRecord
 
   MIN_VOTES = 3.freeze
 
-  scope :with_creator, ->(user) { where(creator_id: user.id) }
+  scope :with_creator, ->(user) do
+    where(creator_id: user.id) unless user.admin?
+  end
   scope :with_participant, ->(user) do
-    joins(:event_participants).where('participant_id = ?', user.id)
+    joins(:event_participants).where('participant_id = ?', user.id) unless user.admin?
   end
 
   belongs_to :creator, class_name: 'User'
