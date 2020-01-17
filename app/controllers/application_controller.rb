@@ -1,13 +1,16 @@
-class ApplicationController < ActionController::API
-  include ActionController::MimeResponds
-  respond_to :json
-
-  rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity_response
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found_response
-
+class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def home
+  end
+
   private
+
+  def configure_permitted_parameters
+    added_params = %i(first_name last_name)
+    devise_parameter_sanitizer.permit(:sign_up, keys: added_params)
+    devise_parameter_sanitizer.permit(:account_update, keys: added_params)
+  end
 
   def unprocessable_entity_response(exception)
     render json: { errors: exception.record.errors }, status: :unprocessable_entity
@@ -19,19 +22,5 @@ class ApplicationController < ActionController::API
 
   def unauthorized_response(message = 'Unauthorized')
     render json: { error: message }, status: :unauthorized
-  end
-
-  def configure_permitted_parameters
-    added_params = %i(first_name last_name)
-    devise_parameter_sanitizer.permit(:sign_up, keys: added_params)
-    devise_parameter_sanitizer.permit(:account_update, keys: added_params)
-  end
-
-  def require_admin!
-    unauthorized_response('You must be an admin to perform this action') unless current_user.admin?
-  end
-
-  def require_group!
-    unauthorized_response('You must be in a group to perform this action') if current_user.group.nil?
   end
 end

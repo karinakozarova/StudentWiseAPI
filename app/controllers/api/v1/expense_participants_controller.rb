@@ -1,4 +1,4 @@
-class Api::V1::ExpenseParticipantsController < ApplicationController
+class Api::V1::ExpenseParticipantsController < ApiController
   before_action :authenticate_user!
   before_action :set_expense
   before_action :set_expense_participant, only: :destroy

@@ -1,4 +1,4 @@
-class Api::V1::EventParticipantsController < ApplicationController
+class Api::V1::EventParticipantsController < ApiController
   before_action :authenticate_user!
   before_action :set_event
   before_action :set_event_participant, only: :destroy

@@ -1,4 +1,4 @@
-class Api::V1::GroupsController < ApplicationController
+class Api::V1::GroupsController < ApiController
   before_action :authenticate_user!, except: %i(index show)
   before_action :require_admin!, only: %i(create update destroy)
   before_action :set_group, except: %i(index create)

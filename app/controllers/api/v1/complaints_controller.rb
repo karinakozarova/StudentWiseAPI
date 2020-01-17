@@ -1,4 +1,4 @@
-class Api::V1::ComplaintsController < ApplicationController
+class Api::V1::ComplaintsController < ApiController
   before_action :authenticate_user!
   before_action :require_group!
   before_action :require_admin!, only: %i(mark_as_in_progress mark_as_rejected mark_as_resolved)

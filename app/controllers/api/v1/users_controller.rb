@@ -1,4 +1,4 @@
-class Api::V1::UsersController < ApplicationController
+class Api::V1::UsersController < ApiController
   before_action :authenticate_user!
   before_action :require_group!
   before_action :set_user, only: :show

@@ -1,4 +1,4 @@
-class Api::V1::AgreementsController < ApplicationController
+class Api::V1::AgreementsController < ApiController
   before_action :authenticate_user!
   before_action :require_group!
   before_action :set_agreement, only: :show

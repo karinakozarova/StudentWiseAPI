@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   mount Rswag::Ui::Engine => '/docs'
   mount Rswag::Api::Engine => '/docs'
 
+  root to: 'application#home'
+  get '/home', to: 'application#home'
+
   devise_for :users, skip: :all
 
   namespace :api, defaults: { format: :json } do
