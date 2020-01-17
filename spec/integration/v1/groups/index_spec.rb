@@ -9,7 +9,6 @@ RSpec.describe 'Show multiple Groups', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/groups' do
     get 'Shows all groups' do
       tags 'Groups'
-      security [Bearer: []]
 
       response '200', 'groups shown' do
         let(:Authorization) { auth_token }

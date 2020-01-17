@@ -8,7 +8,6 @@ RSpec.describe 'Show a Group', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/groups/{id}' do
     get 'Shows a group' do
       tags 'Groups'
-      security [Bearer: []]
       parameter name: :id,
         in: :path,
         type: :integer
