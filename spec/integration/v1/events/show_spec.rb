@@ -2,11 +2,11 @@ require 'swagger_helper'
 
 RSpec.describe 'Show an Event', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user) }
-  let(:event) { create(:event) }
+  let(:event) { create(:event, group_id: user.group.id) }
   let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/events/{id}' do
-    get 'Shows an event' do
+    get 'Shows an event in your group' do
       tags 'Events'
       security [Bearer: []]
       parameter name: :id,

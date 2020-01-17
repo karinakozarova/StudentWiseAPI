@@ -7,7 +7,7 @@ RSpec.describe 'Show multiple Expenses', swagger_doc: 'v1/swagger.json' do
   let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/expenses' do
-    get 'Shows all expenses' do
+    get 'Shows all expenses in your group' do
       tags 'Expenses'
       security [Bearer: []]
 

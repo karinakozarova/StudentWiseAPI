@@ -2,11 +2,11 @@ require 'swagger_helper'
 
 RSpec.describe 'Show a Complaint', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user) }
-  let(:complaint) { create(:complaint, creator_id: user.id) }
+  let(:complaint) { create(:complaint, creator_id: user.id, group_id: user.group.id) }
   let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/complaints/{id}' do
-    get 'Shows a complaint' do
+    get 'Shows a complaint in your group' do
       tags 'Complaints'
       security [Bearer: []]
       parameter name: :id,

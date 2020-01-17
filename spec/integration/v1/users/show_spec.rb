@@ -2,10 +2,10 @@ require 'swagger_helper'
 
 RSpec.describe 'Show a User', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user) }
-  let(:auth_token) { user_auth_token }
+  let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/users/{id}' do
-    get 'Shows a user' do
+    get 'Shows a user in your group' do
       tags 'Users'
       security [Bearer: []]
       parameter name: :id,

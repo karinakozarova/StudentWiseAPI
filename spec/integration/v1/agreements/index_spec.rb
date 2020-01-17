@@ -7,7 +7,7 @@ RSpec.describe 'Show multiple Agreements', swagger_doc: 'v1/swagger.json' do
   let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/agreements' do
-    get 'Shows all agreements' do
+    get 'Shows all agreements in your group' do
       tags 'Agreements'
       security [Bearer: []]
 

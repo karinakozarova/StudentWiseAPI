@@ -2,7 +2,7 @@ require 'swagger_helper'
 
 RSpec.describe 'Unarchives an Expense', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user) }
-  let(:expense) { create(:expense, :archived, creator_id: user.id) }
+  let(:expense) { create(:expense, :archived, creator_id: user.id, group_id: user.group.id) }
   let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/expenses/{id}/unarchive' do
