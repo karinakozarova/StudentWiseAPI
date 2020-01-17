@@ -6,7 +6,7 @@ RSpec.describe 'Create an Event', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/events' do
     post 'Creates an event' do
       tags 'Events'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :event,
         in: :body,
         required: true,
@@ -17,7 +17,7 @@ RSpec.describe 'Create an Event', swagger_doc: 'v1/swagger.json' do
               type: :object,
               required: %i(title),
               properties: {
-                event_type: { type: :string },
+                kind: { type: :string },
                 title: { type: :string },
                 description: { type: :string },
                 starts_at: { type: :string },

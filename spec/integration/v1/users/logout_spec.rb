@@ -4,7 +4,7 @@ RSpec.describe 'Logout a User', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/users/logout' do
     delete 'Revokes user authentication' do
       tags 'Users'
-      security [ Bearer: [] ]
+      security [Bearer: []]
 
       response '204', 'user logged out' do
         let(:Authorization) { user_auth_token }

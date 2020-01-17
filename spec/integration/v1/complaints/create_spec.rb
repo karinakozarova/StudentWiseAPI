@@ -6,7 +6,7 @@ RSpec.describe 'Create a Complaint', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/complaints' do
     post 'Creates a complaint' do
       tags 'Complaints'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :complaint,
         in: :body,
         required: true,

@@ -2,14 +2,14 @@ require 'swagger_helper'
 
 RSpec.describe 'Show multiple Expenses', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user) }
-  let(:expense1) { create(:expense, creator_id: user.id) }
-  let(:expense2) { create(:expense, creator_id: user.id) }
+  let(:expense1) { create(:expense) }
+  let(:expense2) { create(:expense) }
   let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/expenses' do
     get 'Shows all expenses' do
       tags 'Expenses'
-      security [ Bearer: [] ]
+      security [Bearer: []]
 
       response '200', 'expenses shown' do
         let(:Authorization) { auth_token }

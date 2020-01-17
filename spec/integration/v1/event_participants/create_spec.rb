@@ -8,7 +8,7 @@ RSpec.describe 'Create an EventParticipant', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/events/{event_id}/participants' do
     post 'Creates an event participant' do
       tags 'EventParticipants'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :event_id,
         in: :path,
         type: :integer

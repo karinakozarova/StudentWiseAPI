@@ -7,7 +7,7 @@ RSpec.describe 'Mark an Event as finished', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/events/{id}/mark_as_finished' do
     put 'Marks an event as finished' do
       tags 'Events'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :id,
         in: :path,
         type: :integer
@@ -38,7 +38,7 @@ RSpec.describe 'Mark an Event as finished', swagger_doc: 'v1/swagger.json' do
         let(:id) { event.id }
 
         before do
-          event.update!(event_status: :finished)
+          event.update!(status: :finished)
         end
 
         run_test!

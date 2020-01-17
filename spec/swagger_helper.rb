@@ -16,8 +16,8 @@ RSpec.configure do |config|
     'v1/swagger.json' => {
       swagger: '2.0',
       info: {
-        title: 'StudentWise API V1',
-        version: 'v1',
+        title: 'StudentWise API',
+        version: 'V1',
         description: 'RESTful API for StudentWise Project'
       },
       consumes: ['application/json'],

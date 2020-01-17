@@ -5,7 +5,7 @@ class CreateExpenses < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.string :notes
       t.decimal :price, null: false, precision: 8, scale: 2
-      t.integer :amount, null: false
+      t.integer :quantity, null: false
 
       t.timestamps
     end

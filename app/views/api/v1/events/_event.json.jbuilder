@@ -1,4 +1,4 @@
-json.extract! event, :id, :event_type, :event_status
+json.extract! event, :id, :kind, :status
 json.locked event.locked?
 json.extract! event, :title, :description, :starts_at, :finishes_at, :created_at, :updated_at
 json.creator do

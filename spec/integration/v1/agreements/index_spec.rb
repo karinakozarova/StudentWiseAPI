@@ -9,7 +9,7 @@ RSpec.describe 'Show multiple Agreements', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/agreements' do
     get 'Shows all agreements' do
       tags 'Agreements'
-      security [ Bearer: [] ]
+      security [Bearer: []]
 
       response '200', 'agreements shown' do
         let(:Authorization) { auth_token }

@@ -11,7 +11,7 @@ class Expense < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true, format: { with: /\A\d+(?:\.\d{1,2})?\z/ },
                     numericality: { greater_than: 0 }
-  validates :amount, presence: true, numericality: { greater_than: 0, only_integer: true }
+  validates :quantity, presence: true, numericality: { greater_than: 0, only_integer: true }
 
   after_create :add_creator_to_participants
 

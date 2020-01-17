@@ -8,7 +8,7 @@ RSpec.describe 'Update an Event', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/events/{id}' do
     put 'Updates an event' do
       tags 'Events'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :id,
         in: :path,
         type: :integer
@@ -21,7 +21,7 @@ RSpec.describe 'Update an Event', swagger_doc: 'v1/swagger.json' do
             event: {
               type: :object,
               properties: {
-                event_type: { type: :string },
+                kind: { type: :string },
                 title: { type: :string },
                 description: { type: :string },
                 starts_at: { type: :string },

@@ -6,7 +6,7 @@ RSpec.describe 'Create an Expense', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/expenses' do
     post 'Creates an expense' do
       tags 'Expenses'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :expense,
         in: :body,
         required: true,
@@ -15,12 +15,12 @@ RSpec.describe 'Create an Expense', swagger_doc: 'v1/swagger.json' do
           properties: {
             expense: {
               type: :object,
-              required: %i(name price amount),
+              required: %i(name price quantity),
               properties: {
                 name: { type: :string },
                 notes: { type: :string },
                 price: { type: :number },
-                amount: { type: :integer }
+                quantity: { type: :integer }
               }
             }
           }

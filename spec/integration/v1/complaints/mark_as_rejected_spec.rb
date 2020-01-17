@@ -1,14 +1,14 @@
 require 'swagger_helper'
 
-RSpec.describe 'Mark an Complaint as rejected', swagger_doc: 'v1/swagger.json' do
+RSpec.describe 'Mark a Complaint as rejected', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user, :admin) }
   let(:complaint) { create(:complaint) }
   let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/complaints/{id}/mark_as_rejected' do
-    put 'Marks an complaint as rejected' do
+    put 'Marks a complaint as rejected' do
       tags 'Complaints'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :id,
         in: :path,
         type: :integer

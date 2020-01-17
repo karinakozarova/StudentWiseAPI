@@ -2,13 +2,13 @@ require 'swagger_helper'
 
 RSpec.describe 'Show an Expense', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user) }
-  let(:expense) { create(:expense, creator_id: user.id) }
+  let(:expense) { create(:expense) }
   let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/expenses/{id}' do
     get 'Shows an expense' do
       tags 'Expenses'
-      security [ Bearer: [] ]
+      security [Bearer: []]
       parameter name: :id,
         in: :path,
         type: :integer

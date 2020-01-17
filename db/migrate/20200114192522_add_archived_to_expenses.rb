@@ -1,4 +1,4 @@
-class AddArchivedToExpense < ActiveRecord::Migration[6.0]
+class AddArchivedToExpenses < ActiveRecord::Migration[6.0]
   def change
     add_column :expenses, :archived, :boolean, default: false
   end

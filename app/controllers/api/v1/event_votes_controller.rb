@@ -37,8 +37,8 @@ class Api::V1::EventVotesController < ApplicationController
   end
 
   def check_event
-    @event.errors.add(:event_type, "'#{@event.event_type}' is not subject to voting") unless @event.votable?
-    @event.errors.add(:event_status, 'does not accept votes right now') unless @event.in_review?
+    @event.errors.add(:kind, "'#{@event.kind}' is not subject to voting") unless @event.votable?
+    @event.errors.add(:status, 'does not accept votes right now') unless @event.in_review?
     @event.errors.add(:event_id, 'cannot vote for event you participate in') if @event.participants.include?(current_user)
 
     raise ActiveRecord::RecordInvalid.new(@event) if @event.errors.any?

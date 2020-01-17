@@ -1,6 +1,6 @@
 class Api::V1::EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_event, only: %i(show)
+  before_action :set_event, only: :show
   before_action :set_event_with_creator, only: %i(update destroy)
   before_action :set_event_with_participant, only: %i(mark_as_finished unmark_as_finished)
   before_action :check_event, only: %i(update destroy mark_as_finished unmark_as_finished)
@@ -14,7 +14,7 @@ class Api::V1::EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.event_status = :pending
+    @event.status = :pending
     @event.creator_id = current_user.id
 
     @event.save!
@@ -31,31 +31,31 @@ class Api::V1::EventsController < ApplicationController
   end
 
   def mark_as_finished
-    @event.update!(event_status: :marked_as_finished)
+    @event.update!(status: :marked_as_finished)
     render :mark, status: :ok
   end
 
   def unmark_as_finished
-    @event.update!(event_status: :pending)
+    @event.update!(status: :pending)
     render :mark, status: :ok
   end
 
   private
 
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:id] || params[:event_id])
   end
 
   def set_event_with_creator
-    @event = Event.with_creator(current_user).find(params[:id])
+    @event = Event.with_creator(current_user).find(params[:id] || params[:event_id])
   end
 
   def set_event_with_participant
-    @event = Event.with_participant(current_user).find(params[:event_id])
+    @event = Event.with_participant(current_user).find(params[:id] || params[:event_id])
   end
 
   def event_params
-    params.require(:event).permit(:event_type, :title, :description, :starts_at, :finishes_at)
+    params.require(:event).permit(:kind, :title, :description, :starts_at, :finishes_at)
   end
 
   def check_event

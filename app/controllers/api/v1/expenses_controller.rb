@@ -1,6 +1,6 @@
 class Api::V1::ExpensesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_expense, only: %i(show)
+  before_action :set_expense, only: :show
   before_action :set_expense_with_creator, only: %i(update destroy archive unarchive)
 
   def index
@@ -40,7 +40,7 @@ class Api::V1::ExpensesController < ApplicationController
   private
 
   def set_expense
-    @expense = Expense.find(params[:id])
+    @expense = Expense.find(params[:id] || params[:expense_id])
   end
 
   def set_expense_with_creator
@@ -48,6 +48,6 @@ class Api::V1::ExpensesController < ApplicationController
   end
 
   def expense_params
-    params.require(:expense).permit(:name, :notes, :price, :amount)
+    params.require(:expense).permit(:name, :notes, :price, :quantity)
   end
 end

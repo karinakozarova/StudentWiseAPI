@@ -8,7 +8,7 @@ RSpec.describe 'Show all Users', swagger_doc: 'v1/swagger.json' do
   path '/api/v1/users' do
     get 'Shows all users' do
       tags 'Users'
-      security [ Bearer: [] ]
+      security [Bearer: []]
 
       response '200', 'users shown' do
         let(:Authorization) { auth_token }
