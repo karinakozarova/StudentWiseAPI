@@ -30,4 +30,8 @@ class ApplicationController < ActionController::API
   def require_admin!
     unauthorized_response unless current_user.admin?
   end
+
+  def require_group!
+    unauthorized_response('You must be in a group to perform this action') if current_user.group.nil?
+  end
 end

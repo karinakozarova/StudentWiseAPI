@@ -1,10 +1,11 @@
 class Api::V1::ExpensesController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_group!
   before_action :set_expense, only: :show
   before_action :set_expense_with_creator, only: %i(update destroy archive unarchive)
 
   def index
-    @expenses = Expense.all
+    @expenses = Expense.with_group_of(current_user).all
   end
 
   def show
@@ -13,6 +14,7 @@ class Api::V1::ExpensesController < ApplicationController
   def create
     @expense = Expense.new(expense_params)
     @expense.creator_id = current_user.id
+    @expense.group_id = current_user.group.id
 
     @expense.save!
     render :show, status: :created
@@ -40,11 +42,11 @@ class Api::V1::ExpensesController < ApplicationController
   private
 
   def set_expense
-    @expense = Expense.find(params[:id] || params[:expense_id])
+    @expense = Expense.with_group_of(current_user).find(params[:id] || params[:expense_id])
   end
 
   def set_expense_with_creator
-    @expense = Expense.with_creator(current_user).find(params[:id] || params[:expense_id])
+    @expense = Expense.with_group_of(current_user).with_creator(current_user).find(params[:id] || params[:expense_id])
   end
 
   def expense_params

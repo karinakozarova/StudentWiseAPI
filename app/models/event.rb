@@ -7,6 +7,9 @@ class Event < ApplicationRecord
   scope :with_creator, ->(user) do
     where(creator_id: user.id) unless user.admin?
   end
+  scope :with_group_of, ->(user) do
+    where(group_id: user.group.id) unless user.admin?
+  end
   scope :with_participant, ->(user) do
     joins(:event_participants).where('participant_id = ?', user.id) unless user.admin?
   end

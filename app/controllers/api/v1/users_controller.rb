@@ -1,9 +1,10 @@
 class Api::V1::UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_group!
   before_action :set_user, only: :show
 
   def index
-    @users = User.all
+    @users = User.with_group_of(current_user).all
   end
 
   def show
@@ -12,6 +13,6 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.with_group_of(current_user).find(params[:id])
   end
 end

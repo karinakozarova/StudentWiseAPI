@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  scope :with_group_of, ->(user) do
+    where(group_id: user.group.id) unless user.admin?
+  end
+
   # Other devise modules available:
   # :recoverable, :rememberable, :confirmable,
   # :lockable, :timeoutable, :trackable and :omniauthable
