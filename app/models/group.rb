@@ -8,4 +8,8 @@ class Group < ApplicationRecord
   has_many :users
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
+
+  def is_default?
+    name == DEFAULT_GROUP_NAME
+  end
 end
