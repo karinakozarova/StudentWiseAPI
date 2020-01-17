@@ -1,4 +1,6 @@
 class Group < ApplicationRecord
+  DEFAULT_GROUP_NAME = 'default'.freeze
+
   has_many :agreements
   has_many :complaints
   has_many :events
