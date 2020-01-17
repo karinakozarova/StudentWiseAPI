@@ -1,6 +1,9 @@
 json.extract! event, :id, :kind, :status
 json.locked event.locked?
 json.extract! event, :title, :description, :starts_at, :finishes_at, :created_at, :updated_at
+json.group do
+  json.partial! 'api/v1/groups/group', group: event.group
+end
 json.creator do
   json.partial! 'api/v1/users/user', user: event.creator
 end
