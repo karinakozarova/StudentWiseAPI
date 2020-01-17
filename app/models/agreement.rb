@@ -4,6 +4,7 @@ class Agreement < ApplicationRecord
   end
 
   belongs_to :creator, class_name: 'User'
+  belongs_to :group
 
   validates :title, presence: true
 end

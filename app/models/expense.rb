@@ -4,6 +4,7 @@ class Expense < ApplicationRecord
   end
 
   belongs_to :creator, class_name: 'User'
+  belongs_to :group
 
   has_many :expense_participants, dependent: :destroy
   has_many :participants, through: :expense_participants

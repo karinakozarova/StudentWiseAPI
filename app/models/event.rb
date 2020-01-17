@@ -12,6 +12,7 @@ class Event < ApplicationRecord
   end
 
   belongs_to :creator, class_name: 'User'
+  belongs_to :group
 
   has_many :event_participants, dependent: :destroy
   has_many :event_votes, dependent: :destroy

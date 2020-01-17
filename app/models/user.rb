@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: JwtBlacklist
 
+  belongs_to :group
+
   has_many :agreements
   has_many :complaints
   has_many :event_participants, dependent: :destroy

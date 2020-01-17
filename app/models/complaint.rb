@@ -6,6 +6,7 @@ class Complaint < ApplicationRecord
   end
 
   belongs_to :creator, class_name: 'User'
+  belongs_to :group
 
   validates :status, inclusion: { in: STATUSES.map(&:to_s) }
   validates :title, presence: true
