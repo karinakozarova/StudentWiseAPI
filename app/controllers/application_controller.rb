@@ -28,7 +28,7 @@ class ApplicationController < ActionController::API
   end
 
   def require_admin!
-    unauthorized_response unless current_user.admin?
+    unauthorized_response('You must be an admin to perform this action') unless current_user.admin?
   end
 
   def require_group!

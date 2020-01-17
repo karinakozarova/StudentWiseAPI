@@ -17,7 +17,6 @@ Rails.application.routes.draw do
       end
 
       resources :agreements
-      resources :groups
       resources :users, only: %i(index show)
       resources :complaints do
         put 'mark_as_in_progress', to: 'complaints#mark_as_in_progress'
@@ -41,6 +40,10 @@ Rails.application.routes.draw do
 
         post 'participants', to: 'expense_participants#create'
         delete 'participants', to: 'expense_participants#destroy'
+      end
+      resources :groups do
+        put 'members', to: 'groups#move_member'
+        delete 'members', to: 'groups#remove_member'
       end
     end
   end
