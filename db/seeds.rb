@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Group.create(name: Group::DEFAULT_GROUP_NAME,
+             description: 'This is a default group',
+             rules: 'This group has no rules')

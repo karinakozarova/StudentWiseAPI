@@ -1,12 +1,13 @@
 require 'swagger_helper'
 
 RSpec.describe 'Show all Users', swagger_doc: 'v1/swagger.json' do
-  let(:user1) { create(:user) }
-  let(:user2) { create(:user) }
+  let(:user) { create(:user) }
+  let(:user1) { create(:user, group_id: user.group.id) }
+  let(:user2) { create(:user, group_id: user.group.id) }
   let(:auth_token) { user_auth_token }
 
   path '/api/v1/users' do
-    get 'Shows all users' do
+    get 'Shows all users in your group' do
       tags 'Users'
       security [Bearer: []]
 

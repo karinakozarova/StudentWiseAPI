@@ -7,7 +7,7 @@ RSpec.describe 'Show multiple Complaints', swagger_doc: 'v1/swagger.json' do
   let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/complaints' do
-    get 'Shows complaints which you created' do
+    get 'Shows complaints which you created in your group' do
       tags 'Complaints'
       security [Bearer: []]
 

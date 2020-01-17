@@ -2,7 +2,12 @@ require 'swagger_helper'
 
 RSpec.describe 'Unmark an Event as finished', swagger_doc: 'v1/swagger.json' do
   let(:event) { create(:event, :with_participants) }
-  let(:auth_token) { user_auth_token(event.participants.first) }
+  let(:user) { event.participants.first }
+  let(:auth_token) { user_auth_token(user) }
+
+  before do
+    event.update!(group_id: user.group.id)
+  end
 
   path '/api/v1/events/{id}/unmark_as_finished' do
     put 'Unmarks an event as finished' do

@@ -1,40 +1,41 @@
 require 'swagger_helper'
 
-RSpec.describe 'Update an Agreement', swagger_doc: 'v1/swagger.json' do
-  let(:user) { create(:user) }
-  let(:old_agreement) { create(:agreement, creator_id: user.id, group_id: user.group.id) }
+RSpec.describe 'Update a Group', swagger_doc: 'v1/swagger.json' do
+  let(:user) { create(:user, :admin) }
+  let(:old_group) { create(:group) }
   let(:auth_token) { user_auth_token(user) }
 
-  path '/api/v1/agreements/{id}' do
-    put 'Updates an agreement' do
-      tags 'Agreements'
+  path '/api/v1/groups/{id}' do
+    put 'Updates a group' do
+      tags 'Groups'
       security [Bearer: []]
       parameter name: :id,
         in: :path,
         type: :integer
-      parameter name: :agreement,
+      parameter name: :group,
         in: :body,
         required: true,
         schema: {
           type: :object,
           properties: {
-            agreement: {
+            group: {
               type: :object,
               properties: {
-                title: { type: :string },
-                description: { type: :string }
+                name: { type: :string },
+                description: { type: :string },
+                rules: { type: :string }
               }
             }
           }
         }
 
-      response '200', 'agreement updated' do
+      response '200', 'group updated' do
         let(:Authorization) { auth_token }
-        let(:id) { old_agreement.id }
-        let(:agreement) do
+        let(:id) { old_group.id }
+        let(:group) do
           {
-            agreement: {
-              title: 'New Title'
+            group: {
+              name: 'New Title'
             }
           }
         end
@@ -44,11 +45,11 @@ RSpec.describe 'Update an Agreement', swagger_doc: 'v1/swagger.json' do
 
       response '401', 'unauthorized' do
         let(:Authorization) { 'invalid' }
-        let(:id) { old_agreement.id }
-        let(:agreement) do
+        let(:id) { old_group.id }
+        let(:group) do
           {
-            agreement: {
-              title: 'New Title'
+            group: {
+              name: 'New Title'
             }
           }
         end
@@ -59,10 +60,10 @@ RSpec.describe 'Update an Agreement', swagger_doc: 'v1/swagger.json' do
       response '404', 'not found' do
         let(:Authorization) { auth_token }
         let(:id) { 0 }
-        let(:agreement) do
+        let(:group) do
           {
-            agreement: {
-              title: 'New Title'
+            group: {
+              name: 'New Title'
             }
           }
         end
@@ -72,11 +73,11 @@ RSpec.describe 'Update an Agreement', swagger_doc: 'v1/swagger.json' do
 
       response '422', 'invalid request' do
         let(:Authorization) { auth_token }
-        let(:id) { old_agreement.id }
-        let(:agreement) do
+        let(:id) { old_group.id }
+        let(:group) do
           {
-            agreement: {
-              title: ''
+            group: {
+              name: ''
             }
           }
         end

@@ -2,11 +2,11 @@ require 'swagger_helper'
 
 RSpec.describe 'Show an Agreement', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user) }
-  let(:agreement) { create(:agreement) }
+  let(:agreement) { create(:agreement, group_id: user.group.id) }
   let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/agreements/{id}' do
-    get 'Shows an agreement' do
+    get 'Shows an agreement in your group' do
       tags 'Agreements'
       security [Bearer: []]
       parameter name: :id,

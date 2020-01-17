@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :event do
     association :creator, factory: :user
+    association :group
     kind { :other }
     status { :pending }
     title { Faker::Lorem.sentence }

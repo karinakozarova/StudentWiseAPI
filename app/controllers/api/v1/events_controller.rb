@@ -1,12 +1,13 @@
 class Api::V1::EventsController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_group!
   before_action :set_event, only: :show
   before_action :set_event_with_creator, only: %i(update destroy)
   before_action :set_event_with_participant, only: %i(mark_as_finished unmark_as_finished)
   before_action :check_event, only: %i(update destroy mark_as_finished unmark_as_finished)
 
   def index
-    @events = Event.all
+    @events = Event.with_group_of(current_user).all
   end
 
   def show
@@ -16,6 +17,7 @@ class Api::V1::EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.status = :pending
     @event.creator_id = current_user.id
+    @event.group_id = current_user.group.id
 
     @event.save!
     render :show, status: :created
@@ -43,15 +45,15 @@ class Api::V1::EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.find(params[:id] || params[:event_id])
+    @event = Event.with_group_of(current_user).find(params[:id] || params[:event_id])
   end
 
   def set_event_with_creator
-    @event = Event.with_creator(current_user).find(params[:id] || params[:event_id])
+    @event = Event.with_group_of(current_user).with_creator(current_user).find(params[:id] || params[:event_id])
   end
 
   def set_event_with_participant
-    @event = Event.with_participant(current_user).find(params[:id] || params[:event_id])
+    @event = Event.with_group_of(current_user).with_participant(current_user).find(params[:id] || params[:event_id])
   end
 
   def event_params

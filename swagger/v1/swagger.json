@@ -72,7 +72,7 @@
         }
       },
       "get": {
-        "summary": "Shows all agreements",
+        "summary": "Shows all agreements in your group",
         "tags": [
           "Agreements"
         ],
@@ -127,7 +127,7 @@
         }
       },
       "get": {
-        "summary": "Shows an agreement",
+        "summary": "Shows an agreement in your group",
         "tags": [
           "Agreements"
         ],
@@ -267,7 +267,7 @@
         }
       },
       "get": {
-        "summary": "Shows complaints which you created",
+        "summary": "Shows complaints which you created in your group",
         "tags": [
           "Complaints"
         ],
@@ -322,7 +322,7 @@
         }
       },
       "get": {
-        "summary": "Shows a complaint",
+        "summary": "Shows a complaint in your group",
         "tags": [
           "Complaints"
         ],
@@ -827,7 +827,7 @@
         }
       },
       "get": {
-        "summary": "Shows all events",
+        "summary": "Shows all events in your group",
         "tags": [
           "Events"
         ],
@@ -882,7 +882,7 @@
         }
       },
       "get": {
-        "summary": "Shows an event",
+        "summary": "Shows an event in your group",
         "tags": [
           "Events"
         ],
@@ -1255,7 +1255,7 @@
         }
       },
       "get": {
-        "summary": "Shows all expenses",
+        "summary": "Shows all expenses in your group",
         "tags": [
           "Expenses"
         ],
@@ -1310,7 +1310,7 @@
         }
       },
       "get": {
-        "summary": "Shows an expense",
+        "summary": "Shows an expense in your group",
         "tags": [
           "Expenses"
         ],
@@ -1438,6 +1438,201 @@
         }
       }
     },
+    "/api/v1/groups": {
+      "post": {
+        "summary": "Creates a group",
+        "tags": [
+          "Groups"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "group",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "group": {
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "rules": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "group created"
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "422": {
+            "description": "invalid request"
+          }
+        }
+      },
+      "get": {
+        "summary": "Shows all groups",
+        "tags": [
+          "Groups"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "groups shown"
+          }
+        }
+      }
+    },
+    "/api/v1/groups/{id}": {
+      "delete": {
+        "summary": "Removes a group",
+        "tags": [
+          "Groups"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "group removed"
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      },
+      "get": {
+        "summary": "Shows a group",
+        "tags": [
+          "Groups"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "group shown"
+          },
+          "404": {
+            "description": "not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a group",
+        "tags": [
+          "Groups"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "group",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "group": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "rules": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "group updated"
+          },
+          "401": {
+            "description": "unauthorized"
+          },
+          "404": {
+            "description": "not found"
+          },
+          "422": {
+            "description": "invalid request"
+          }
+        }
+      }
+    },
     "/api/v1/users": {
       "post": {
         "summary": "Creates a user",
@@ -1489,7 +1684,7 @@
         }
       },
       "get": {
-        "summary": "Shows all users",
+        "summary": "Shows all users in your group",
         "tags": [
           "Users"
         ],
@@ -1637,7 +1832,7 @@
     },
     "/api/v1/users/{id}": {
       "get": {
-        "summary": "Shows a user",
+        "summary": "Shows a user in your group",
         "tags": [
           "Users"
         ],

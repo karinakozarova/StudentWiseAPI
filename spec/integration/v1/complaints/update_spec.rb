@@ -2,7 +2,7 @@ require 'swagger_helper'
 
 RSpec.describe 'Update a Complaint', swagger_doc: 'v1/swagger.json' do
   let(:user) { create(:user) }
-  let(:old_complaint) { create(:complaint, creator_id: user.id) }
+  let(:old_complaint) { create(:complaint, creator_id: user.id, group_id: user.group.id) }
   let(:auth_token) { user_auth_token(user) }
 
   path '/api/v1/complaints/{id}' do

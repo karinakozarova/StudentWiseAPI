@@ -1,12 +1,13 @@
 class Api::V1::ComplaintsController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_group!
   before_action :require_admin!, only: %i(mark_as_in_progress mark_as_rejected mark_as_resolved)
   before_action :set_complaint, only: %i(mark_as_in_progress mark_as_rejected mark_as_resolved)
   before_action :set_complaint_with_creator, only: %i(show update destroy)
   before_action :check_complaint, only: %i(update destroy)
 
   def index
-    @complaints = Complaint.with_creator(current_user).all
+    @complaints = Complaint.with_group_of(current_user).with_creator(current_user).all
     @complaints.map(&:change_sent_to_received!) if current_user.admin?
   end
 
@@ -18,6 +19,7 @@ class Api::V1::ComplaintsController < ApplicationController
     @complaint = Complaint.new(complaint_params)
     @complaint.status = :sent
     @complaint.creator_id = current_user.id
+    @complaint.group_id = current_user.group.id
 
     @complaint.save!
     render :show, status: :created
@@ -50,11 +52,11 @@ class Api::V1::ComplaintsController < ApplicationController
   private
 
   def set_complaint
-    @complaint = Complaint.find(params[:id] || params[:complaint_id])
+    @complaint = Complaint.with_group_of(current_user).find(params[:id] || params[:complaint_id])
   end
 
   def set_complaint_with_creator
-    @complaint = Complaint.with_creator(current_user).find(params[:id] || params[:complaint_id])
+    @complaint = Complaint.with_group_of(current_user).with_creator(current_user).find(params[:id] || params[:complaint_id])
   end
 
   def complaint_params

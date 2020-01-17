@@ -1,6 +1,10 @@
 require 'swagger_helper'
 
 RSpec.describe 'Create a User', swagger_doc: 'v1/swagger.json' do
+  before do
+    create(:group, name: Group::DEFAULT_GROUP_NAME)
+  end
+
   path '/api/v1/users' do
     post 'Creates a user' do
       tags 'Users'

@@ -4,4 +4,7 @@ present(user, V1::UserPresenter) do |u|
   else
     json.extract! u, :id, :first_name, :last_name, :admin, :created_at
   end
+  json.group do
+    json.partial! 'api/v1/groups/group', group: user.group
+  end
 end

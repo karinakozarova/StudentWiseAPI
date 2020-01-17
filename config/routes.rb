@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       end
 
       resources :agreements
+      resources :groups
       resources :users, only: %i(index show)
       resources :complaints do
         put 'mark_as_in_progress', to: 'complaints#mark_as_in_progress'

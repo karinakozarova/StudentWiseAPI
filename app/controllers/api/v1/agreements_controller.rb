@@ -1,10 +1,11 @@
 class Api::V1::AgreementsController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_group!
   before_action :set_agreement, only: :show
   before_action :set_agreement_with_creator, only: %i(update destroy)
 
   def index
-    @agreements = Agreement.all
+    @agreements = Agreement.with_group_of(current_user).all
   end
 
   def show
@@ -13,6 +14,7 @@ class Api::V1::AgreementsController < ApplicationController
   def create
     @agreement = Agreement.new(agreement_params)
     @agreement.creator_id = current_user.id
+    @agreement.group_id = current_user.group.id
 
     @agreement.save!
     render :show, status: :created
@@ -30,11 +32,11 @@ class Api::V1::AgreementsController < ApplicationController
   private
 
   def set_agreement
-    @agreement = Agreement.find(params[:id])
+    @agreement = Agreement.with_group_of(current_user).find(params[:id])
   end
 
   def set_agreement_with_creator
-    @agreement = Agreement.with_creator(current_user).find(params[:id])
+    @agreement = Agreement.with_group_of(current_user).with_creator(current_user).find(params[:id])
   end
 
   def agreement_params
