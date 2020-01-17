@@ -1497,13 +1497,6 @@
         "tags": [
           "Groups"
         ],
-        "security": [
-          {
-            "Bearer": [
-
-            ]
-          }
-        ],
         "responses": {
           "200": {
             "description": "groups shown"
@@ -1548,13 +1541,6 @@
         "summary": "Shows a group",
         "tags": [
           "Groups"
-        ],
-        "security": [
-          {
-            "Bearer": [
-
-            ]
-          }
         ],
         "parameters": [
           {
