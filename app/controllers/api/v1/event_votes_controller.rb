@@ -1,4 +1,4 @@
-class Api::V1::EventVotesController < ApplicationController
+class Api::V1::EventVotesController < ApiController
   before_action :authenticate_user!
   before_action :set_event
   before_action :set_event_vote, only: %i(update destroy)

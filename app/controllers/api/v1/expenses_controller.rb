@@ -1,4 +1,4 @@
-class Api::V1::ExpensesController < ApplicationController
+class Api::V1::ExpensesController < ApiController
   before_action :authenticate_user!
   before_action :require_group!
   before_action :set_expense, only: :show
