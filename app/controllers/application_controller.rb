@@ -1,10 +1,15 @@
 class ApplicationController < ActionController::Base
+  skip_before_action :verify_authenticity_token, if: :json_request?
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def home
   end
 
   private
+
+  def json_request?
+    request.format.json?
+  end
 
   def configure_permitted_parameters
     added_params = %i(first_name last_name)
