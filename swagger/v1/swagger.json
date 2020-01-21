@@ -1727,6 +1727,95 @@
         }
       }
     },
+    "/api/v1/two_fa/challenge": {
+      "post": {
+        "summary": "Checks 2FA challenge for a user",
+        "tags": [
+          "2FA"
+        ],
+        "parameters": [
+          {
+            "name": "challenge",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "challenge": {
+                  "type": "object",
+                  "required": [
+                    "two_fa_challenge",
+                    "response"
+                  ],
+                  "properties": {
+                    "two_fa_challenge": {
+                      "type": "string"
+                    },
+                    "response": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "2FA challenge solved successfully"
+          },
+          "401": {
+            "description": "unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v1/two_fa/disable": {
+      "put": {
+        "summary": "Disables 2FA for a user",
+        "tags": [
+          "2FA"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "2FA disabled for authenticated user"
+          },
+          "401": {
+            "description": "unauthorized"
+          }
+        }
+      }
+    },
+    "/api/v1/two_fa/enable": {
+      "put": {
+        "summary": "Enables 2FA for a user",
+        "tags": [
+          "2FA"
+        ],
+        "security": [
+          {
+            "Bearer": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "2FA enabled for authenticated user"
+          },
+          "401": {
+            "description": "unauthorized"
+          }
+        }
+      }
+    },
     "/api/v1/users": {
       "post": {
         "summary": "Creates a user",
