@@ -301,6 +301,7 @@ Devise.setup do |config|
   config.jwt do |jwt|
     jwt.secret = Rails.application.credentials.devise_jwt_secret_key
     jwt.dispatch_requests = [
+      ['POST', %r{/two_fa/challenge/?$}],
       ['POST', %r{/users/login/?$}],
       ['POST', %r{/users/?$}]
     ]

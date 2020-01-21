@@ -48,6 +48,12 @@ Rails.application.routes.draw do
         put 'members', to: 'groups#move_member'
         delete 'members', to: 'groups#remove_member'
       end
+
+      scope :two_fa do
+        put 'enable', to: 'two_fa#enable'
+        put 'disable', to: 'two_fa#disable'
+        post 'challenge', to: 'two_fa#check_challenge'
+      end
     end
   end
 end
