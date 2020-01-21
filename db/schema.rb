@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_232705) do
+ActiveRecord::Schema.define(version: 2020_01_20_213202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,9 @@ ActiveRecord::Schema.define(version: 2020_01_16_232705) do
     t.string "last_name", null: false
     t.boolean "admin", default: false, null: false
     t.bigint "group_id"
+    t.boolean "two_fa_enabled", default: false
+    t.string "two_fa_secret"
+    t.string "two_fa_challenge"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["group_id"], name: "index_users_on_group_id"
   end
